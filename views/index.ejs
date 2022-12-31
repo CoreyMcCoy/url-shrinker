@@ -1,0 +1,32 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container my-5 col-lg-8 col-12 mx-auto p-md-2 p-3">
+    <h1>URL Shrinker</h1>
+    <form action="/shortUrls" method="POST" class="my-4 form-inline">
+        <div class="input-group mb-3">
+            <label for="fullUrl" class="visually-hidden-focusable">URL</label>
+            <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col" />
+            <button class="btn btn-dark" type="submit">Shrink</button>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full URL</th>
+                    <th>Short URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shortUrls.forEach(shortUrl => { %>
+                <tr>
+                    <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+                    <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                    <td><%= shortUrl.clicks %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
